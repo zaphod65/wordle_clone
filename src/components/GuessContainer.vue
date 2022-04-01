@@ -13,11 +13,12 @@
 
 <style scoped>
 div {
-  margin-top: 0.5em;
+  margin: 0 0.25em 0.25em 0;
 }
 
 div.clear {
   clear:  both;
+  margin: 0;
 }
 </style>
 

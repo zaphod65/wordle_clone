@@ -6,9 +6,8 @@
 div {
   float: left;
   font-size: 2em;
-  margin: 0.25em;
   border: #2c3e50 solid;
-  width: 30px;
+  width: 40px;
   height: 50px;
   color: #fff;
 }

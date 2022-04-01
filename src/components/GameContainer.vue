@@ -9,6 +9,8 @@
         :key="guessAttempt"
       />
       <input placeholder="GUESS" v-on:keyup.enter="addGuess" :disabled="gameOver">
+      <button v-on:click="resetGame">Reset?</button>
+      <h3>Guess chain of: <span :class="chainClass">{{guessChain}}</span> correct</h3>
     </div>
   </div>
 </template>
@@ -30,7 +32,20 @@ export default {
       gameOver: false,
       word: 'FOUND',
       maxGuesses: 6,
+      guessChain: 0,
     };
+  },
+  computed: {
+    chainClass: function() {
+      if (this.guessChain > 10) {
+        return 'guessBig';
+      } else if (this.guessChain >= 5) {
+        return 'guessMedium';
+      } else if (this.guessChain >= 1) {
+        return 'guessSmall';
+      }
+      return 'guessNone';
+    },
   },
   methods: {
     addGuess: function(event) {
@@ -39,11 +54,23 @@ export default {
       if (guess === this.word) {
         this.gameWon = true;
         this.gameOver = true;
+        this.guessChain++;
+      }
+
+      if (this.currentGuess === this.maxGuesses) {
+        this.gameOver = true;
+        this.guessChain = 0;
       }
 
       this.guesses[this.currentGuess] = guess;
       event.target.value = "";
       this.currentGuess++;
+    },
+    resetGame: function() {
+      this.gameWon = false;
+      this.gameOver = false;
+      this.guesses = [];
+      this.currentGuess = 1
     }
   }
 }
@@ -55,6 +82,7 @@ h1 {
 }
 
 h3 {
+  color: #999;
   margin: 40px 0 0;
 }
 
@@ -65,5 +93,17 @@ div.center {
 
 input {
   margin-top: 30px;
+}
+
+span.guessSmall {
+  color: darkslateblue;
+}
+
+span.guessMedium {
+  color: darkkhaki;
+}
+
+span.guessBig {
+  color: darkseagreen;
 }
 </style>
