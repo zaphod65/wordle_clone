@@ -8,7 +8,7 @@
         v-for="guessAttempt in maxGuesses"
         :key="guessAttempt"
       />
-      <input placeholder="GUESS" v-on:keyup.enter="addGuess" :disabled="gameOver">
+      <input placeholder="GUESS" v-on:keyup.enter="addGuess" :disabled="gameOver" maxlength="5">
       <button v-on:click="resetGame">Reset?</button>
       <h3>Guess chain of: <span :class="chainClass">{{guessChain}}</span> correct</h3>
     </div>
@@ -50,6 +50,10 @@ export default {
   methods: {
     addGuess: function(event) {
       const guess = event.target.value.toUpperCase();
+
+      if (guess.length !== 5) {
+        return;
+      }
 
       if (guess === this.word) {
         this.gameWon = true;
