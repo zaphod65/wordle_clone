@@ -55,7 +55,7 @@ export default {
       while (newWord.length !== 5) {
         newWord = randomWord(5);
       }
-      return newWord;
+      return newWord.toUpperCase();
     },
     addGuess: function(event) {
       const guess = event.target.value.toUpperCase();
