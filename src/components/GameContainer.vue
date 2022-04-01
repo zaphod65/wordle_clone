@@ -17,6 +17,7 @@
 
 <script>
 import GuessContainer from './GuessContainer';
+import randomWord from 'random-word-by-length';
 
 export default {
   name: 'GameContainer',
@@ -30,7 +31,7 @@ export default {
       currentGuess: 1,
       gameWon: false,
       gameOver: false,
-      word: 'FOUND',
+      word: this.newWord(),
       maxGuesses: 6,
       guessChain: 0,
     };
@@ -48,6 +49,13 @@ export default {
     },
   },
   methods: {
+    newWord: function () {
+      let newWord = randomWord(5);
+      while (newWord.length !== 5) {
+        newWord = randomWord(5);
+      }
+      return newWord;
+    },
     addGuess: function(event) {
       const guess = event.target.value.toUpperCase();
 
@@ -74,7 +82,8 @@ export default {
       this.gameWon = false;
       this.gameOver = false;
       this.guesses = [];
-      this.currentGuess = 1
+      this.currentGuess = 1;
+      this.word = this.newWord();
     }
   }
 }
