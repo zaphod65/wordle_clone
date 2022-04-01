@@ -11,6 +11,7 @@
       <input placeholder="GUESS" v-on:keyup.enter="addGuess" :disabled="gameOver" maxlength="5">
       <button v-on:click="resetGame">Reset?</button>
       <h3>Guess chain of: <span :class="chainClass">{{guessChain}}</span> correct</h3>
+      <h3 v-if="gameOver">The word was: {{word}}</h3>
     </div>
   </div>
 </template>
