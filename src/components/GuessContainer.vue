@@ -67,6 +67,8 @@ export default {
         return 'correct';
       }
 
+      // This needs to be altered, because it indicates duplicate letters when
+      // there are none
       if (actualWord.includes(char)) {
         return 'contains';
       }
