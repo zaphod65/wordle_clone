@@ -1,20 +1,23 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <GameContainer/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import GameContainer from './components/GameContainer';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    GameContainer,
   }
 }
 </script>
 
 <style>
+body {
+  background-color: #121213;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
